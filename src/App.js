@@ -1,23 +1,53 @@
-import logo from './logo.svg';
+import React from "react";
 import './App.css';
+import { Chart } from "react-google-charts";
+import {yearlyActivityData} from './const_data.js';
+import {daylyActivityData} from './const_data.js';
 
-function App() {
+
+
+export const yaerlyActivityChartOptions = {
+  title: "My Yearly Activities",
+  is3D: true,
+  legend: {
+  position: "left"},
+  colors: ['#e8af2a', '#d14747', '#fdd460', '#de9440', '#ff4958', '#f6c7b6', '#fc8c6a'],
+  backgroundColor: '#e9e7eb',
+  pieSliceTextStyle: {
+  color: 'black'
+}
+};
+
+export const dailyActivityChartOptions = {
+  title: "My Daily Activities",
+  responsive: true,
+  legend: {
+  position: "left" },
+  backgroundColor: '#efecd2',
+};
+
+
+ function App() {
+ 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+
+      <Chart
+      chartType="PieChart"
+      data={yearlyActivityData}
+      options={yaerlyActivityChartOptions}
+      width={"100%"}
+      height={"400px"}
+    />
+
+      <Chart
+      chartType="PieChart"
+      data={daylyActivityData}
+      options={dailyActivityChartOptions}
+      width={"100%"}
+      height={"400px"}
+    />
     </div>
   );
 }
